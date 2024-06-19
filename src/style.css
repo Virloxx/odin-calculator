@@ -1,0 +1,18 @@
+main {
+    background-color: lightgray;
+    max-width: 60rem;
+    text-align: center;
+    margin: auto;
+    padding: 1rem 2rem;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    grid-auto-rows: minmax(5rem, auto);
+}
+
+.zero {
+    grid-column: 1 / span 2;
+}
