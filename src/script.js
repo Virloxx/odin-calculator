@@ -66,8 +66,17 @@ function inputOperator(op) {
 }
 
 function inputEquals() {
-    secondNumber = Number(displayValue);
-    displayValue = operate(operator, firstNumber, secondNumber);
+    if (firstNumber === null) {
+        return;
+    }
+    else if (displayValue === 0) {
+        secondNumber = firstNumber;
+        displayValue = operate(operator, firstNumber, secondNumber);
+    }
+    else {
+        secondNumber = Number(displayValue);
+        displayValue = operate(operator, firstNumber, secondNumber);
+    }
 }
 
 function inputDecimal() {
@@ -90,6 +99,7 @@ function inputSign() {
 function updateDisplay() {
     const display = document.getElementById("display");
     display.innerText = displayValue;
+
     if (displayValue.length > DISPLAY_LENGTH) {
         display.innerText = displayValue.substring(0, DISPLAY_LENGTH);
     }
