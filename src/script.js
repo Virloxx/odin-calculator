@@ -2,6 +2,7 @@ let firstNumber = null;
 let secondNumber = null;
 let operator = null;
 let displayValue = 0;
+const DISPLAY_LENGTH = 9;
 const buttons = document.querySelectorAll("button");
 
 function buttonClick() {
@@ -89,8 +90,8 @@ function inputSign() {
 function updateDisplay() {
     const display = document.getElementById("display");
     display.innerText = displayValue;
-    if (displayValue.length > 9) {
-        display.innerText = displayValue.substring(0, 9);
+    if (displayValue.length > DISPLAY_LENGTH) {
+        display.innerText = displayValue.substring(0, DISPLAY_LENGTH);
     }
 }
 
@@ -112,7 +113,7 @@ function operate(op, num1, num2) {
         if (num2 === 0) {
             return "ERROR!";
         } else {
-            return num1 / num2;
+            return (num1 / num2).toFixed(DISPLAY_LENGTH - 2);
         }
     }
 }
