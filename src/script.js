@@ -15,8 +15,13 @@ function operate(op, num1, num2) {
             return num1 * num2;
             break;
         case '/':
-            return num1 / num2;
-            break;
+            if (num2 === 0) {
+                return "xD";
+            }
+            else {
+                return num1 / num2;
+                break;
+            }
     }
 }
 
