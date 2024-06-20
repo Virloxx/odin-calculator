@@ -3,9 +3,9 @@ let secondNumber = null;
 let operator = null;
 let displayValue = 0;
 const DISPLAY_LENGTH = 9;
-const buttons = document.querySelectorAll("button");
 
 function buttonClick() {
+    const buttons = document.querySelectorAll("button");
     buttons.forEach((button) => {
         button.addEventListener("click", () => {
             if (button.classList == "operand") {
@@ -18,6 +18,7 @@ function buttonClick() {
             if (button.classList == "equals") {
                 inputEquals();
                 updateDisplay();
+                displayValue = 0;
             }
             if (button.classList == "clear") {
                 clearDisplay();
@@ -44,7 +45,8 @@ buttonClick();
 function inputOperand(operand) {
     if (displayValue === 0 || displayValue === '0') {
         displayValue = operand.value;
-    } else {
+    } 
+    else {
         displayValue += operand.value;
     }
 }
@@ -77,6 +79,8 @@ function inputEquals() {
         secondNumber = Number(displayValue);
         displayValue = operate(operator, firstNumber, secondNumber);
     }
+    firstNumber = null;
+    secondNumber = null;
 }
 
 function inputDecimal() {
@@ -99,7 +103,7 @@ function inputSign() {
 function updateDisplay() {
     const display = document.getElementById("display");
     display.innerText = displayValue;
-
+    
     if (displayValue.length > DISPLAY_LENGTH) {
         display.innerText = displayValue.substring(0, DISPLAY_LENGTH);
     }
@@ -123,7 +127,7 @@ function operate(op, num1, num2) {
         if (num2 === 0) {
             return "ERROR!";
         } else {
-            return (num1 / num2).toFixed(DISPLAY_LENGTH - 2);
+            return Number((num1 / num2).toPrecision(DISPLAY_LENGTH)).toString();
         }
     }
 }
