@@ -27,36 +27,37 @@ function inputEquals() {
 function buttonClick() {
     buttons.forEach((button) => {
         button.addEventListener("click", () => {
-
             if (button.classList == "operand") {
                 inputOperand(button);
                 updateDisplay();
             }
-
             if (button.classList == "operator") {
                 inputOperator(button);
             }
-
             if (button.classList == "equals") {
                 inputEquals();
                 updateDisplay();
             }
-
             if (button.classList == "clear") {
                 clearDisplay();
                 updateDisplay();
             }
-
             if (button.classList == "sign") {
-
+                displayValue = -displayValue;
+                updateDisplay();
             }
-
             if (button.classList == "percent") {
-
+                displayValue = displayValue / 100;
+                updateDisplay();
             }
-
             if (button.classList == "decimal") {
-
+                if (displayValue.includes(".")) {
+                    return;
+                }
+                else {
+                    displayValue = displayValue + ".";
+                    updateDisplay();
+                }
             }
         });
     });
