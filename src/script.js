@@ -4,22 +4,65 @@ let operator = null;
 let displayValue = 0;
 
 const buttons = document.querySelectorAll("button");
-buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-       if(button.classList == "operand"){
-        if (displayValue === 0 || displayValue === '0') {
-            displayValue = button.value;
-        } else {
-            displayValue += button.value;
-        }
-       } 
-        updateDisplay();
-        if(button.value === "clear") {
-            clearDisplay();
-            updateDisplay();
-        }
+
+function inputOperand(operand) {
+    if (displayValue === 0 || displayValue === '0') {
+        displayValue = operand.value;
+    } else {
+        displayValue += operand.value;
+    }
+}
+
+function inputOperator(op) {
+    firstNumber = Number(displayValue);
+    operator = op.value;
+    displayValue = 0;
+}
+
+function inputEquals() {
+    secondNumber = Number(displayValue);
+    displayValue = operate(operator, firstNumber, secondNumber);
+}
+
+function buttonClick() {
+    buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+
+            if (button.classList == "operand") {
+                inputOperand(button);
+                updateDisplay();
+            }
+
+            if (button.classList == "operator") {
+                inputOperator(button);
+            }
+
+            if (button.classList == "equals") {
+                inputEquals();
+                updateDisplay();
+            }
+
+            if (button.classList == "clear") {
+                clearDisplay();
+                updateDisplay();
+            }
+
+            if (button.classList == "sign") {
+
+            }
+
+            if (button.classList == "percent") {
+
+            }
+
+            if (button.classList == "decimal") {
+
+            }
+        });
     });
-});
+}
+
+buttonClick();
 
 function updateDisplay() {
     const display = document.getElementById("display");
@@ -36,13 +79,10 @@ function clearDisplay() {
     displayValue = 0;
 }
 
-const display = document.getElementById("display");
-display.innerText = displayValue;
-
 function operate(op, num1, num2) {
     switch(op) {
         case '+':
-            return num1 + num1;
+            return num1 + num2;
             break;
         case '-':
             return num1 - num2;
@@ -60,13 +100,3 @@ function operate(op, num1, num2) {
             break;
     }
 }
-
-function myFunction() {
-    document.getElementById("result").value = "Johnny Bravo";
-}
-
-function inputNumber() {
-
-}
-
-//operate(operator, firstNumber, secondNumber);
