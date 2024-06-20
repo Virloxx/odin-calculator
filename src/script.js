@@ -2,27 +2,7 @@ let firstNumber = null;
 let secondNumber = null;
 let operator = null;
 let displayValue = 0;
-
 const buttons = document.querySelectorAll("button");
-
-function inputOperand(operand) {
-    if (displayValue === 0 || displayValue === '0') {
-        displayValue = operand.value;
-    } else {
-        displayValue += operand.value;
-    }
-}
-
-function inputOperator(op) {
-    firstNumber = Number(displayValue);
-    operator = op.value;
-    displayValue = 0;
-}
-
-function inputEquals() {
-    secondNumber = Number(displayValue);
-    displayValue = operate(operator, firstNumber, secondNumber);
-}
 
 function buttonClick() {
     buttons.forEach((button) => {
@@ -43,27 +23,68 @@ function buttonClick() {
                 updateDisplay();
             }
             if (button.classList == "sign") {
-                displayValue = -displayValue;
+                inputSign();
                 updateDisplay();
             }
             if (button.classList == "percent") {
-                displayValue = displayValue / 100;
+                inputPercent();
                 updateDisplay();
             }
             if (button.classList == "decimal") {
-                if (displayValue.includes(".")) {
-                    return;
-                }
-                else {
-                    displayValue = displayValue + ".";
-                    updateDisplay();
-                }
+                inputDecimal();
+                updateDisplay();
             }
         });
     });
 }
 
 buttonClick();
+
+function inputOperand(operand) {
+    if (displayValue === 0 || displayValue === '0') {
+        displayValue = operand.value;
+    } else {
+        displayValue += operand.value;
+    }
+}
+
+function inputOperator(op) {
+    if (firstNumber === null) {
+        firstNumber = Number(displayValue);
+        operator = op.value;
+        displayValue = 0;
+    }
+    else {
+        secondNumber = Number(displayValue);
+        displayValue = operate(operator, firstNumber, secondNumber);
+        firstNumber = displayValue;
+        updateDisplay();
+        operator = op.value;
+        displayValue = 0;
+    }
+}
+
+function inputEquals() {
+    secondNumber = Number(displayValue);
+    displayValue = operate(operator, firstNumber, secondNumber);
+}
+
+function inputDecimal() {
+    if (displayValue.includes(".")) {
+        return;
+    }
+    else {
+        displayValue = displayValue + ".";
+    }
+}
+
+function inputPercent() {
+    displayValue = displayValue / 100;
+}
+
+function inputSign() {
+    displayValue = -displayValue;
+}
 
 function updateDisplay() {
     const display = document.getElementById("display");
@@ -81,23 +102,17 @@ function clearDisplay() {
 }
 
 function operate(op, num1, num2) {
-    switch(op) {
-        case '+':
-            return num1 + num2;
-            break;
-        case '-':
-            return num1 - num2;
-            break;
-        case '*':
-            return num1 * num2;
-            break;
-        case '/':
-            if (num2 === 0) {
-                return "xD";
-            }
-            else {
-                return num1 / num2;
-            }
-            break;
+    if (op === '+') {
+        return num1 + num2;
+    } else if (op === '-') {
+        return num1 - num2;
+    } else if (op === '*') {
+        return num1 * num2;
+    } else if (op === '/') {
+        if (num2 === 0) {
+            return "ERROR!";
+        } else {
+            return num1 / num2;
+        }
     }
 }
