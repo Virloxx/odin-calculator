@@ -1,36 +1,31 @@
-function add(num1, num2) {
-    return num1 + num2;
-}
+var firstNumber = null;
+let secondNumber = null;
+let operator = null;
+let displayValue = 0;
 
-function subtract(num1, num2) {
-    return num1 - num2;
-}
-
-function multiply(num1, num2) {
-    return num1 * num2;
-}
-
-function divide(num1, num2) {
-    return num1 / num2;
-}
-
-var firstNumber;
-var secondNumber;
-var operator;
-
-function operate(operator, num1, num2) {
-    switch(operator) {
+function operate(op, num1, num2) {
+    switch(op) {
         case '+':
-            return add(num1, num2);
+            return num1 + num1;
             break;
         case '-':
-            return subtract(num1, num2);
+            return num1 - num2;
             break;
         case '*':
-            return multiply(num1, num2);
+            return num1 * num2;
             break;
         case '/':
-            return divide(num1, num2);
+            return num1 / num2;
             break;
     }
 }
+
+function myFunction() {
+    document.getElementById("result").value = "Johnny Bravo";
+}
+
+function inputNumber() {
+
+}
+
+//operate(operator, firstNumber, secondNumber);

@@ -13,6 +13,6 @@ main {
     grid-auto-rows: minmax(5rem, auto);
 }
 
-.zero {
+#zero {
     grid-column: 1 / span 2;
 }
