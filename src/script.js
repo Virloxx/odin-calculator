@@ -125,7 +125,7 @@ function operate(op, num1, num2) {
         return num1 * num2;
     } else if (op === '/') {
         if (num2 === 0) {
-            return "ERROR!";
+            return "Error";
         } else {
             return Number((num1 / num2).toPrecision(DISPLAY_LENGTH)).toString();
         }
