@@ -10,7 +10,7 @@ main {
     align-items: center;
     height: 100vh;
     overflow: hidden;
-    background-color: grey;
+    background-color: rgb(51, 51, 51)
 }
 
 .calculator {
